@@ -1,4 +1,5 @@
 import sys
+import os
 
 #####################init#################################
 args=sys.argv
@@ -15,10 +16,24 @@ steam_api_key=args[8]
 ####################init after get BASEDIR ##############
 sys.path.append(BASEDIR+"/MakeMatchIDList")
 sys.path.append(BASEDIR+"/UrlLoad")
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../Misc')
 import MakeMatchIDList
+import FileIO
 
+####################val#################################
+matchIDList=[]
+
+filebase="../../data/" + str(leaguename)
+try:
+	os.mkdir(filebase)
+except FileExistsError:
+	pass
+
+matchid_filename=filebase +"/"+ str(leaguename) + "_idlist.json"
 ##### get Matchlist json from league id #####
-MakeMatchIDList.MakeMatchIDList(leagueid,leaguename,steam_api_key,startid,endid)
+matchIDList=MakeMatchIDList.MakeMatchIDList(leagueid,leaguename,steam_api_key,startid,endid)
+FileIO.ListToJson(matchIDList,matchid_filename)
+
 
 
 

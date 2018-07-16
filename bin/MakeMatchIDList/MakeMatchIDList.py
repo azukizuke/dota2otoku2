@@ -27,15 +27,14 @@ def MakeMatchIDList(leagueid,leaguename,api_key,startid,endid):
 
 		##### add checkrootin  #####
 		prev_matchid_len=len(matchIDList)
-		print(prev_matchid_len)
 		matchIDList=MakeJsonFromMatches(matchIDList,matches,num_rootin,startid,endid)
-		print(len(matchIDList))
 		if prev_matchid_len == len(matchIDList):
 			break
+
 		appendid=matchIDList[-1]
 		num_rootin += 1
 
-	print(json.dumps(matchIDList, sort_keys=True,indent=4))
+	return matchIDList
 
 def MakeSteamMatchHistoryUrl(leagueid,api_key,startid,add_flag):
 	if add_flag < 1:

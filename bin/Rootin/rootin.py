@@ -34,46 +34,6 @@ matchid_filename=filebase +"/"+ str(leaguename) + "_idlist.json"
 matchIDList=MakeMatchIDList.MakeMatchIDList(leagueid,leaguename,steam_api_key,startid,endid)
 FileIO.ListToJson(matchIDList,matchid_filename)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#fileOut.initMakeFolder(leaguename)
-#
-##Get MatchIdList
-#if leagueid != 0:
-#	MakeMatchList.makeMatchIdListFile(leagueid,leaguename,startid,endid)
-#
-##Get MatchDataList
-#MatchDataList=[]
-#MatchDataList=CalcMatchDataList.getMatchDataList(leaguename)
-#
-####Heroes List Class Init
-#heroesStatistics = HeroesStatistics.HeroesStatistics()
-#heroesStatistics.initHeroList()
-#
-#for MatchData in MatchDataList:
-#	#MatchData内にあるplyersdata
-#	heroesStatistics.addHeroesMatchPlayerJson(MatchData["players"])
-#	#pickban data keisan
-#	heroesStatistics.addHeroesMatchPickBan(MatchData)
-#
-########HeroStat Calc
-#heroesStatistics.calcHeroesStatistics()
-#
-########Output Calc
-#heroesStatistics.outHeroesStatistics(leaguename)
+##### get Odota json from league id json #####
+matchIDListRoot=FileIO.LoadJson(matchid_filename)
+print(matchIDListRoot)

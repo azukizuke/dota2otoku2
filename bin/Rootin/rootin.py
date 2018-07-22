@@ -17,11 +17,14 @@ steam_api_key=args[8]
 sys.path.append(BASEDIR+"/MakeMatchIDList")
 sys.path.append(BASEDIR+"/UrlLoad")
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../Misc')
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../MakeOdotaDataList')
 import MakeMatchIDList
 import FileIO
+import MakeOdotaDataList
 
 ####################val#################################
 matchIDList=[]
+odotaDataList={}
 
 filebase="../../data/" + str(leaguename)
 try:
@@ -30,10 +33,12 @@ except FileExistsError:
 	pass
 
 matchid_filename=filebase +"/"+ str(leaguename) + "_idlist.json"
+odota_data_filename=filebase +"/"+ str(leaguename) + "_odotadatalist.json"
 ##### get Matchlist json from league id #####
 matchIDList=MakeMatchIDList.MakeMatchIDList(leagueid,leaguename,steam_api_key,startid,endid)
 FileIO.ListToJson(matchIDList,matchid_filename)
 
 ##### get Odota json from league id json #####
 matchIDListRoot=FileIO.LoadJson(matchid_filename)
-print(matchIDListRoot)
+odotaDataList=MakeOdotaDataList.MakeOdotaDataList(matchIDListRoot)
+FileIO.DictToJson(odotaDataList,odota_data_filename)

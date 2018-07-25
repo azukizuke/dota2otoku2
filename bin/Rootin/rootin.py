@@ -1,5 +1,6 @@
 import sys
 import os
+import json
 
 #####################init#################################
 args=sys.argv
@@ -34,6 +35,9 @@ except FileExistsError:
 
 matchid_filename=filebase +"/"+ str(leaguename) + "_idlist.json"
 odota_data_filename=filebase +"/"+ str(leaguename) + "_odotadatalist.json"
+
+####################json#################################
+
 ##### get Matchlist json from league id #####
 matchIDList=MakeMatchIDList.MakeMatchIDList(leagueid,leaguename,steam_api_key,startid,endid)
 FileIO.ListToJson(matchIDList,matchid_filename)
@@ -42,3 +46,6 @@ FileIO.ListToJson(matchIDList,matchid_filename)
 matchIDListRoot=FileIO.LoadJson(matchid_filename)
 odotaDataList=MakeOdotaDataList.MakeOdotaDataList(matchIDListRoot)
 FileIO.DictToJson(odotaDataList,odota_data_filename)
+
+##### analysis #####
+odotaDataDictRoot=FileIO.LoadJson(odota_data_filename)

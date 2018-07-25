@@ -19,7 +19,7 @@ def MakeOdotaDataList(matchIDList):
 		root = UrlLoad.convertJson(URL_TIMEOUT,url)
 
 		##### add Json dict  #####
-		odotaDataDict["match_id"] = root
+		odotaDataDict[match_id] = root
 
 	return odotaDataDict
 

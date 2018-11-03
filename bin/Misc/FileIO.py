@@ -12,4 +12,4 @@ def LoadJson(filename):
 
 def DictToJson(outdict,filename):
 	f=open(filename,"w")
-	json.dump(outdict, f, sort_keys=True, indent=4)
+	json.dump(outdict, f, indent=4)

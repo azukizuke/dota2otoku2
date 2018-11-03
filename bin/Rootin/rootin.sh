@@ -11,8 +11,10 @@ endid=9999999999
 comp_leaguename=na
 leaguefilename=na
 
+odota_get_flag=$1
+
 APIKEY=`cat /var/dota2otoku2/steam_api.txt`
 
 ##### #####
 
-python3 $BASEDIR/Rootin/rootin.py $leagueid $leaguename $startid $endid $comp_leaguename $leaguefilename $BASEDIR $APIKEY
+python3 $BASEDIR/Rootin/rootin.py $leagueid $leaguename $startid $endid $comp_leaguename $leaguefilename $BASEDIR $APIKEY $odota_get_flag
